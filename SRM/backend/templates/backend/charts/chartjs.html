@@ -1,0 +1,36 @@
+{% extends 'backend/charts/base.html' %}
+
+{% block content %}
+
+<center>
+    <div style="width: 700px; height: 700px;">
+        <canvas id="myChart"></canvas>
+    </div>
+</center>
+
+<script>
+    // Get the canvas element
+var ctx = document.getElementById('myChart').getContext('2d');
+
+// Define the chart data
+var data = {
+  labels: ['Fail', 'Pass'],
+  datasets: [{
+    label: 'Count',
+    data: [{{pass_count}}, {{fail_count}},{{ student_count }}],
+    backgroundColor: ['rgba(54, 162, 235, 0.5)','rgba(24, 112, 135, 0.2)', 'rgba(24, 132, 15, 0.2)'],
+    borderColor: ['rgba(54, 162, 235, 1)','rgba(24, 122, 215, 1)', 'rgba(14, 122, 215, 1)'],
+    borderWidth: 1
+  }]
+};
+
+// Create the chart
+var myChart = new Chart(ctx, {
+  type: 'pie',
+  data: data,
+  options: {}
+});
+
+</script>
+
+{% endblock %}
